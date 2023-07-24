@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 
+import ListOkived from "./components/ListOkived/ListOkived.tsx";
 import { getData } from "./services/getData.ts";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
   }, []);
   console.log(okivedData);
 
-  return <>{okivedData && okivedData[0].code}</>;
+  return <>{<ListOkived items={okivedData || []} />}</>;
 }
 
 export default App;
