@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 
+import { InputText } from "./common/ui/inputText/InputText.tsx";
 import ListOkived from "./components/ListOkived/ListOkived.tsx";
 import { getData } from "./services/getData.ts";
 
@@ -12,7 +13,12 @@ function App() {
   }, []);
   console.log(okivedData);
 
-  return <>{<ListOkived items={okivedData || []} />}</>;
+  return (
+    <>
+      <InputText placeholder={"Search"} type={"search"}></InputText>
+      <ListOkived items={okivedData || []} />
+    </>
+  );
 }
 
 export default App;
