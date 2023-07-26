@@ -1,10 +1,10 @@
-import "./App.css";
 import { ChangeEvent, useEffect, useState } from "react";
 
 import { InputText } from "./common/ui/inputText/InputText.tsx";
 import ListOkived from "./components/ListOkived/ListOkived.tsx";
 import { useDebounce } from "./hooks/useDebounce.ts";
 import { getData } from "./services/getData.ts";
+import "./App.css";
 
 function App() {
   const [okivedData, setOkivedData] = useState<any>();

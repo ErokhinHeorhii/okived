@@ -30,9 +30,11 @@ const ListOkived = ({ items, searchValue }: ListOkivedType) => {
       return (
         <div key={item.code}>
           {hasSubItems ? (
-            <div onClick={() => toggleExpand(item.code)}>
+            <div>
               <Item item={item} />
-              {expanded[item.code] ? "-" : "+"}
+              <div onClick={() => toggleExpand(item.code)}>
+                {expanded[item.code] ? "-" : "+"}
+              </div>
             </div>
           ) : (
             <Item item={item} />
@@ -46,8 +48,6 @@ const ListOkived = ({ items, searchValue }: ListOkivedType) => {
   };
 
   const filteredItems = filterItems(items, searchValue);
-
-  console.log(filteredItems);
 
   return <ul>{renderItems(filteredItems)}</ul>;
 };
