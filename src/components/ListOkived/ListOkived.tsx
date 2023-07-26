@@ -1,12 +1,19 @@
 import { useState } from "react";
 
+import { filterItems } from "../../util/filterItems.ts";
+
 import { Item, ItemsType } from "./Item.tsx";
 
 interface BooleanObject {
   [key: string]: boolean;
 }
 
-const ListOkived = ({ items }: { items: Array<ItemsType> }) => {
+type ListOkivedType = {
+  items: Array<ItemsType>;
+  searchValue: string;
+};
+
+const ListOkived = ({ items, searchValue }: ListOkivedType) => {
   const [expanded, setExpanded] = useState<BooleanObject>({});
 
   const toggleExpand = (code: string) => {
@@ -38,7 +45,11 @@ const ListOkived = ({ items }: { items: Array<ItemsType> }) => {
     });
   };
 
-  return <ul>{renderItems(items)}</ul>;
+  const filteredItems = filterItems(items, searchValue);
+
+  console.log(filteredItems);
+
+  return <ul>{renderItems(filteredItems)}</ul>;
 };
 
 export default ListOkived;
