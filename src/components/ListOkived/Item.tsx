@@ -8,9 +8,12 @@ export type ItemsType = {
   items?: Array<[ItemsType]>;
   name: string;
 };
-
+export enum ItemStatuses {
+  NoChecked = 0,
+  Checked = 1,
+}
 export const Item = ({ item }: ItemType) => {
-  const [checkboxValue, setCheckboxValue] = useState(false);
+  const [checkboxValue, setCheckboxValue] = useState(0);
 
   useEffect(() => {
     const checkboxStatusesFromLC = localStorage.getItem(item.code);
@@ -20,7 +23,9 @@ export const Item = ({ item }: ItemType) => {
     }
   }, []);
   const changeStatusCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-    const status = e.currentTarget.checked;
+    const status = e.currentTarget.checked
+      ? ItemStatuses.Checked
+      : ItemStatuses.NoChecked;
 
     setCheckboxValue(status);
     localStorage.setItem(item.code, JSON.stringify(status));
@@ -30,7 +35,7 @@ export const Item = ({ item }: ItemType) => {
     <li>
       <input
         type={"checkbox"}
-        checked={checkboxValue}
+        checked={checkboxValue === 0 ? !!0 : !!1}
         onChange={changeStatusCheckbox}
       />
       <b>{item.code}</b> - <span>{item.name}</span>

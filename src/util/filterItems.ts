@@ -7,8 +7,8 @@ export const filterItems = (
   items: Array<ItemsType>,
   searchValue: string,
 ): Array<ItemsType> => {
-  const capitalizeSerchValue = capitalize(searchValue);
-  const lowerCaseSerchValue = lowerCase(searchValue);
+  const capitalizeSearchValue = capitalize(searchValue);
+  const lowerCaseSearchValue = lowerCase(searchValue);
 
   if (searchValue === "") {
     return items;
@@ -18,11 +18,12 @@ export const filterItems = (
   for (let item of items) {
     if (
       item.name.includes(searchValue) ||
-      item.name.includes(capitalizeSerchValue) ||
-      item.name.includes(lowerCaseSerchValue)
+      item.name.includes(capitalizeSearchValue) ||
+      item.name.includes(lowerCaseSearchValue)
     ) {
       matchedItems.push(item);
     }
+
     if (Array.isArray(item.items) && item.items.length > 0) {
       let subItems = filterItems(item.items, searchValue);
 
