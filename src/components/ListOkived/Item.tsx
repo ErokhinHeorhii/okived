@@ -5,7 +5,7 @@ export type ItemType = {
 };
 export type ItemsType = {
   code: string;
-  items?: Array<[ItemsType]>;
+  items?: Array<ItemsType>;
   name: string;
 };
 export enum ItemStatuses {

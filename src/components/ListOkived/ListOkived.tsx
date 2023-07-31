@@ -1,37 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { filterItems } from "../../util/filterItems.ts";
-import { getItemFromLocalStorage } from "../../util/getItemFromLocalStorage.ts";
+import { getCodes } from "../../util/getCodes.ts";
 
 import { Item, ItemsType } from "./Item.tsx";
 
-interface BooleanObject {
+export interface BooleanObject {
   [key: string]: boolean;
 }
 
 type ListOkivedType = {
   items: Array<ItemsType>;
   searchValue: string;
+  itemsFromLocalStorage: Array<ItemsType>;
 };
 
-const ListOkived = ({ items, searchValue }: ListOkivedType) => {
-  const [expanded, setExpanded] = useState<BooleanObject>({});
+const ListOkived = ({
+  items,
+  searchValue,
+  itemsFromLocalStorage,
+}: ListOkivedType) => {
+  useEffect(() => {
+    if (itemsFromLocalStorage.length > 0) {
+      const startData = getCodes(items, itemsFromLocalStorage);
 
-  let itemsFromLocalStorage: Array<ItemsType> = [];
-
-  for (let item of items) {
-    const itemFromLocalStorage = getItemFromLocalStorage(item);
-
-    if (itemFromLocalStorage !== null) {
-      if (Array.isArray(itemFromLocalStorage)) {
-        for (let subItem of itemFromLocalStorage) {
-          itemsFromLocalStorage.push(subItem);
-        }
-      } else {
-        itemsFromLocalStorage.push(itemFromLocalStorage);
-      }
+      setExpanded(startData);
     }
-  }
+  }, [itemsFromLocalStorage]);
+
+  const [expanded, setExpanded] = useState<BooleanObject>({});
   const toggleExpand = (code: string) => {
     setExpanded((prev) => ({
       ...prev,
@@ -65,7 +62,7 @@ const ListOkived = ({ items, searchValue }: ListOkivedType) => {
 
   const filteredItems = filterItems(items, searchValue);
 
-  console.log(filteredItems, itemsFromLocalStorage);
+  console.log(expanded, filteredItems, itemsFromLocalStorage);
 
   return <ul>{renderItems(filteredItems)}</ul>;
 };

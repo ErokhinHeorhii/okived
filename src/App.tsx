@@ -1,16 +1,17 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import { InputText } from "./common/ui/inputText/InputText.tsx";
+import { ItemsType } from "./components/ListOkived/Item.tsx";
 import ListOkived from "./components/ListOkived/ListOkived.tsx";
 import { useDebounce } from "./hooks/useDebounce.ts";
+import { useGetItemsFromLocalStorage } from "./hooks/useGetItemsFromLocalStorage.ts";
 import { getData } from "./services/getData.ts";
 import "./App.css";
 
 function App() {
-  const [okivedData, setOkivedData] = useState<any>();
+  const [okivedData, setOkivedData] = useState<Array<ItemsType>>([]);
   const [searchValue, setSearchValue] = useState("");
   const [searchDebounceValue, setSearchDebounceValue] = useState("");
-
   const debounceValue = useDebounce<string>(searchValue as string);
 
   useEffect(() => {
@@ -24,6 +25,8 @@ function App() {
     setSearchValue(event.currentTarget.value);
   };
 
+  const itemsFromLocalStorage = useGetItemsFromLocalStorage(okivedData);
+
   return (
     <>
       <InputText
@@ -31,7 +34,11 @@ function App() {
         placeholder={"Search"}
         type={"search"}
       ></InputText>
-      <ListOkived items={okivedData || []} searchValue={searchDebounceValue} />
+      <ListOkived
+        items={okivedData || []}
+        searchValue={searchDebounceValue}
+        itemsFromLocalStorage={itemsFromLocalStorage}
+      />
     </>
   );
 }
