@@ -5,8 +5,8 @@
 [![demo](https://img.shields.io/badge/-demo-brightgreen?style=for-the-badge&logo=github)](https://erokhinheorhii.github.io/okived/)
 
 ### Short description: 
-You can use this application to search the lists OKiVED. Enter a value in Search and get the result.Search is case-insensitive, happens with a delay. Selected values are stored in Local storage.
-After reloading, the list expands to the selected values (but it is necessary to choose taking into account parent elements.You can fix it later)
+You can use this application to search the lists OKiVED. Enter a value in Search and get the result. Search is case-insensitive, happens with a delay. Selected values are stored in Local storage.
+After reloading, the list expands to the selected values (but it is necessary to choose taking into account parent elements)
 Thank.
 
 
