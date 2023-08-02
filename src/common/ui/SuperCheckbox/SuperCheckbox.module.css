@@ -1,0 +1,33 @@
+.label {
+    cursor: pointer;
+
+}
+
+.checkbox {
+    cursor: pointer;
+    margin-top: -2px;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 2px solid #06c;
+    border-radius: 3px;
+    appearance: none;
+}
+
+.checkbox:checked {
+    background-image: url('checked.svg');
+    background-color: #c1d4f5;
+    appearance: none;
+}
+
+.checkbox:focus {
+    border-color: #0059b3;
+}
+
+.spanClassName {
+    font-family: 'Montserrat', sans-serif;
+    color: #06c;
+}

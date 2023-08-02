@@ -4,6 +4,7 @@ import { filterItems } from "../../util/filterItems.ts";
 import { getCodes } from "../../util/getCodes.ts";
 
 import { Item, ItemsType } from "./Item.tsx";
+import style from "./ListOkived.module.css";
 
 export interface BooleanObject {
   [key: string]: boolean;
@@ -43,14 +44,19 @@ const ListOkived = ({
       return (
         <div key={item.code}>
           {hasSubItems ? (
-            <div>
+            <div className={style.itemContainer}>
               <Item item={item} />
-              <div onClick={() => toggleExpand(item.code)}>
+              <div
+                className={style.expandedStyle}
+                onClick={() => toggleExpand(item.code)}
+              >
                 {expanded[item.code] ? "-" : "+"}
               </div>
             </div>
           ) : (
-            <Item item={item} />
+            <div className={style.itemContainer}>
+              <Item item={item} />
+            </div>
           )}
           {hasSubItems && expanded[item.code] && (
             <ul>{renderItems(item.items)}</ul>
@@ -62,9 +68,12 @@ const ListOkived = ({
 
   const filteredItems = filterItems(items, searchValue);
 
-  console.log(expanded, filteredItems, itemsFromLocalStorage);
-
-  return <ul>{renderItems(filteredItems)}</ul>;
+  return (
+    <>
+      <ul className={style.ulContainer}>{renderItems(filteredItems)}</ul>
+      {filteredItems.length === 0 && "Change searchValue"}
+    </>
+  );
 };
 
 export default ListOkived;

@@ -6,6 +6,7 @@ import ListOkived from "./components/ListOkived/ListOkived.tsx";
 import { useDebounce } from "./hooks/useDebounce.ts";
 import { useGetItemsFromLocalStorage } from "./hooks/useGetItemsFromLocalStorage.ts";
 import { getData } from "./services/getData.ts";
+
 import "./App.css";
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
   const itemsFromLocalStorage = useGetItemsFromLocalStorage(okivedData);
 
   return (
-    <>
+    <div className="container">
       <InputText
         onChange={onChangeHandler}
         placeholder={"Search"}
@@ -39,7 +40,7 @@ function App() {
         searchValue={searchDebounceValue}
         itemsFromLocalStorage={itemsFromLocalStorage}
       />
-    </>
+    </div>
   );
 }
 

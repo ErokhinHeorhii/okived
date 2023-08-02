@@ -14,7 +14,7 @@ export const getCodes = (
   ): ItemsType | null => {
     for (let i = 0; i < array.length; i++) {
       if (array[i].code === code) {
-        if (parentCode) {
+        if (parentCode as string) {
           result[parentCode] = true;
         }
 

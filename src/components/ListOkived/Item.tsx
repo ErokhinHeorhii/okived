@@ -1,5 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
+import SuperCheckbox from "../../common/ui/SuperCheckbox/SuperCheckbox.tsx";
+
 export type ItemType = {
   item: ItemsType;
 };
@@ -33,8 +35,7 @@ export const Item = ({ item }: ItemType) => {
 
   return (
     <li>
-      <input
-        type={"checkbox"}
+      <SuperCheckbox
         checked={checkboxValue === 0 ? !!0 : !!1}
         onChange={changeStatusCheckbox}
       />
