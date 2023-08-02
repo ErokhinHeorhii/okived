@@ -59,7 +59,7 @@ const ListOkived = ({
             </div>
           )}
           {hasSubItems && expanded[item.code] && (
-            <ul>{renderItems(item.items)}</ul>
+            <ul>{renderItems(item.items as ItemsType[])}</ul>
           )}
         </div>
       );

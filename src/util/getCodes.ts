@@ -5,7 +5,7 @@ export const getCodes = (
   firstArray: Array<ItemsType>,
   secondArray: Array<ItemsType>,
 ): BooleanObject => {
-  let result = {};
+  let result = {} as BooleanObject;
 
   const findCode = (
     array: Array<ItemsType>,
@@ -14,14 +14,14 @@ export const getCodes = (
   ): ItemsType | null => {
     for (let i = 0; i < array.length; i++) {
       if (array[i].code === code) {
-        if (parentCode as string) {
+        if (parentCode) {
           result[parentCode] = true;
         }
 
         return array[i];
       }
       if (Array.isArray(array[i].items)) {
-        let found = findCode(array[i].items, code, array[i].code);
+        let found = findCode(array[i].items!, code, array[i].code);
 
         if (found) {
           return found;
